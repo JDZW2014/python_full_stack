@@ -2,12 +2,12 @@
 # -*- coding:utf-8 -*-
 """
 date：          2021-01-18
-Description :
+Description : 用装饰器给函数添加  用户密码登录功能
 auther : wcy
 """
 # import modules
 
-__all__ = []
+__all__ = ["login_wrapper"]
 
 
 # user login info
