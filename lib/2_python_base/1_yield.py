@@ -32,6 +32,7 @@ def consumer_func(productor: Generator):
         print("消费任务：{}".format(task))
         consume_result = "success"
 
+
 # main
 if __name__ == '__main__':
     productor = productor_func()
