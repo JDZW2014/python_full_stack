@@ -28,7 +28,6 @@ def calculate(cal_str: str) -> int:
             cal_str = cal_str.replace(find, str(eval(find)))
             return calculate(cal_str)
 
-
 # test
 def test():
     # cal_str = "2*(3+4)"
