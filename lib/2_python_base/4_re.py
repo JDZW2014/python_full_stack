@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*-
 """
 date：          2021-01-26
-Description :
+Description : 用正则表达式实现一个 计算器 的功能
 auther : wcy
 """
 # import modules

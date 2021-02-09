@@ -1,17 +1,13 @@
 # !/user/bin/python
 # -*- coding:utf-8 -*-
 """
-date：          2021-01-27
+date：          2021-02-08
 Description :
 auther : wcy
 """
 # import modules
-import hashlib
+import os
 
 __all__ = []
 
-
-str1 = "hello world"
-
-hashlib.md5()
-
+# define class

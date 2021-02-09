@@ -36,6 +36,7 @@ def logging_more():
 
     # handler 将日志内容通过handler 发送到合适的输出
     # Handler -> StreamHandler -> FileHandler
+    # https://www.cnblogs.com/zhangliang91/p/11920643.html
     sh = logging.StreamHandler()
     fh = logging.FileHandler()
     nh = logging.NullHandler()
