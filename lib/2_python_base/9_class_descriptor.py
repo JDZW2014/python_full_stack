@@ -24,3 +24,18 @@ class Typed(object):
 
     def __set_name__(self, owner, name):
         pass
+
+
+class A:
+    n = 0
+
+
+a1 = A()
+a2 = A()
+
+a1.n += 1
+a2.n += 1
+
+print(a1.n)
+
+

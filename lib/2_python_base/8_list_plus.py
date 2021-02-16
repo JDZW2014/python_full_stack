@@ -81,7 +81,6 @@ class Test1(object):
     pass
 
 
-
 # define func
 def print_wrapper_wrapper():
     def print_wrapper():
