@@ -26,8 +26,10 @@ To use, simply 'import logging' and log away!
 
 import errno
 import io
-import logging
-import logging.handlers
+# import logging
+import _2_python_base._5_logging_src as logging
+# import logging.handlers
+import _2_python_base._5_logging_src.handlers
 import re
 import struct
 import sys
