@@ -1319,6 +1319,7 @@ class Manager(object):
             raise TypeError('A logger name must be a string')
         _acquireLock()
         try:
+            # 这部分是维持logger hierarchy structure 的关键 bywcy
             if name in self.loggerDict:
                 rv = self.loggerDict[name]
                 if isinstance(rv, PlaceHolder):
@@ -1928,6 +1929,7 @@ class LoggerAdapter(object):
 root = RootLogger(WARNING)
 Logger.root = root
 Logger.manager = Manager(Logger.root)
+# 设置类属性，保证了全局唯一, 这种唯一性是在导入logging 是就设定的   bywcy
 
 
 # ---------------------------------------------------------------------------
