@@ -26,10 +26,10 @@ class ClassWrapper(object):
 
 # define function
 @ClassWrapper
-def sum(a, b):
+def _sum(a, b):
     return a + b
 
 
 # main
 if __name__ == '__main__':
-    print(sum(a=1, b=2))
+    print(_sum(a=1, b=2))
