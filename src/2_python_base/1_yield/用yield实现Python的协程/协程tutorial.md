@@ -32,6 +32,12 @@
 
 > (2) [code](2_基于yield实现actor模型.py)
 
+>> (1) ActorScheduler 负责事件循环
+
+>> (2) counter() 负责控制终止
+
+>> (3) task1 / task2 相当于切换的协程，当程序运行到这些函数内部的yield处，就开始切换。
+
 
 ### 3. 
 [actor](https://cloud.tencent.com/developer/news/698662)
