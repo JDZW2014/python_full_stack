@@ -32,13 +32,12 @@ IO多路复用其实就是我们说的select，poll，epoll,它的基本原理�
 
 > 3 epoll 又称为 event poll : 触发模式
 >> epoll会把哪个流发生哪种I/O事件通知我们。所以epoll是事件驱动（每个事件关联fd）的，此时我们对这些流的操作都是有意义的。复杂度也降低到了O(1)。  
->> 表面上看epoll的性能最好，但是在连接数少并且连接都十分活跃的情况下，select和poll的性能可能比epoll好，毕竟epoll的通知机制需要很多函数回调。  
+>> 表面上看epoll的性能最好，但是在连接数少并且连接都十分活跃的情况下，select和poll的性能可能比epoll好，毕竟epoll的通知机制需要很多函数回调。
+
+![select 和 epoll](md_pic/select_epoll.png)  
 
 [参考](https://zhuanlan.zhihu.com/p/272891398)
 
-  
-
-
-
+ 
 
 select会轮询检测所有的连接,或者 IO,其理论所使用的就是事件驱动模型这一编程范式
