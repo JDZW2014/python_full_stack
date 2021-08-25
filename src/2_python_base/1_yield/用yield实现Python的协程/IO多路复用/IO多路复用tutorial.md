@@ -39,3 +39,5 @@ IO多路复用其实就是我们说的select，poll，epoll,它的基本原理�
 
 ### epoll python 编程
 [参考](https://harveyqing.gitbooks.io/python-read-and-write/content/python_advance/how_to_use_linux_epoll.html)
+[参考](https://www.cnblogs.com/huchong/p/8613308.html)
+
