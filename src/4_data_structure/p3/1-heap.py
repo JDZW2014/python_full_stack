@@ -55,6 +55,12 @@ class Heap(object):
             end = min(start + start + 1, self.heap_size)
             print(self.lis[start: end], "\n")
 
+    def heap_pop(self, ):
+        self.exg_value(idx1=0, idx2=self.heap_size - 1)
+        self.heap_size -= 1
+        if self.heap_size > 0:
+            return self.lis.pop()
+        return None
 
 class MaxHeap(Heap):
     def add(self, v):
@@ -69,6 +75,51 @@ class MaxHeap(Heap):
                 idx = f_idx
             else:
                 break
+    def head_pop(self, ):
+        v = super().heap_pop()
+        
+        h_idx = 0
+        while True:
+            e_idx, e_val = self._heap_pop_com1_(h_idx=h_idx)
+            h_val = self._index(idx=h_idx)
+
+            # h_val 为 None 说明到了列表的尾部，e_val 为 None 说明 没有子节点
+            if e_val is None or h_val is None:
+                break
+            
+            if self._heap_pop_com3_(h_val=h_val, e_val=e_val):
+                self.exg_value(idx1=h_idx, idx2=e_idx)
+                h_idx = e_idx
+            else:
+                break
+        return v
+    
+    def _heap_pop_com1_(self, h_idx):
+        l_idx = self.left_children_idx(h_idx)
+        r_idx = self.right_children_idx(h_idx)
+
+        l_val = self._index(l_idx)
+        r_val = self._index(r_idx)
+        if l_val is None and r_val is None:
+            return None, None
+        elif l_val is None and r_val is not None:
+            return r_idx, r_val
+        elif r_val is None and l_val is not None:
+            return l_idx, l_val
+        else:
+            return self._heap_pop_com2_(l_idx=l_idx, l_val=l_val, r_idx=r_idx, r_val=r_val)
+    
+    def _heap_pop_com2_(self, l_idx, l_val, r_idx, r_val):
+        if self._rule_(val=l_val, f_val=r_val):
+            return l_idx, l_val
+        else:
+            return r_idx, r_val
+    
+    def _heap_pop_com3_(self, h_val, e_val):
+        if self._rule_(val=h_val, f_val=e_val):
+            return False
+        else:
+            return True
     
     def _rule_(self, val, f_val):
         return val > f_val
@@ -77,6 +128,9 @@ class MaxHeap(Heap):
 class MinHeap(MaxHeap):
     def _rule_(self, val, f_val):
         return val < f_val
+    
+    def pop_min(self, ):
+        pass
 
 
 # define function
