@@ -2,7 +2,8 @@
 分别实现反转单项链表和反转双向链表的函数
 要求：如果链表长度为N，时间复杂度要求为O(N), 额外空间复杂度为O(1)
 """
-from src._4_data_structure.p4.base_model import SNode, DNode, get_single_node_list, get_double_node_list, print_single_node, print_double_node
+from src._4_data_structure.p4.base_model import SNode, DNode, get_single_node_list, get_double_node_list, \
+    print_single_node, print_double_node
 
 
 def revert_single_node(node: SNode):
