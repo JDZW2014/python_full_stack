@@ -77,6 +77,37 @@ def print_double_node(node: DNode):
         node = node.get_next_node()
 
 
+def add_loop_on_node_list(node, steps: int):
+    last_node = get_last_node(node=node)
+    certain_node = get_certain_node(node=node, steps=steps)
+    last_node.set_next_node(certain_node)
+
+
+def get_last_node(node: SNode):
+    while True:
+        next_node = node.get_next_node()
+        if next_node:
+            node = next_node
+        else:
+            break
+    return node
+
+
+def get_certain_node(node: SNode, steps: int):
+    while steps > 0:
+        node = node.get_next_node()
+        steps -= 1
+    return node
+
+
+def get_node_len(node: SNode):
+    length = 0
+    while node:
+        length += 1
+        node = node.get_next_node()
+    return length
+
+
 # define test
 def test1():
     lis = [2, 3, 4, 5, 6]
