@@ -96,7 +96,7 @@ class BinTree(object):
     def get_root_node(self):
         return self.root
 
-    def travel_tree(self, order_type, recursion, _print=False):
+    def travel_tree(self, order_type, recursion, _print=False) -> typing.List[BTNode]:
         assert order_type in self.all_order_type
         node_list = []
         if recursion:
