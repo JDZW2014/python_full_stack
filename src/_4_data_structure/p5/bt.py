@@ -205,7 +205,6 @@ class BinTree(object):
         else:
             raise ValueError("order_type get wrong param")
 
-
     def width_first_travel_tree(self, ):
         """
         """
@@ -233,6 +232,33 @@ class BinTree(object):
         这不是一个严格遍历
         """
         self.width_first_travel_tree()
+
+    def get_mex_depth(self):
+        return BinTree._get_max_depth_(node=self.get_root_node())
+
+    @staticmethod
+    def _get_max_depth_(node: BTNode):
+        if node is None:
+            depth = 0
+        else:
+            left_depth = BinTree._get_max_depth_(node.get_left_node())
+            right_depth = BinTree._get_max_depth_(node.get_right_node())
+            depth = max(left_depth, right_depth) + 1
+        return depth
+
+    def get_node_num(self):
+        return len(self.travel_tree(order_type=BinTree._first_order_type, recursion=True, _print=False))
+
+    def if_full_bt(self):
+        node_num = self.get_node_num()
+        depth = self.get_mex_depth()
+
+        if node_num == 2 ** depth - 1:
+            is_full_bt = True
+        else:
+            is_full_bt = False
+
+        return is_full_bt, node_num, depth
 
 
 # define test
