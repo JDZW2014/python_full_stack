@@ -42,12 +42,13 @@ class Node_(object):
 
 
 class Edge(object):
-    __slots__ = ["from_", "to_", "weight"]
+    __slots__ = ["from_", "to_", "weight", "if_have_di"]
 
-    def __init__(self, from_: typing.Type[Node_], to_: typing.Type[Node_], weight):
+    def __init__(self, from_: typing.Type[Node_], to_: typing.Type[Node_], weight, if_have_di):
         self.from_ = from_
         self.to_ = to_
         self.weight = weight
+        self.if_have_di = if_have_di
 
 
 class Node(Node_):
@@ -96,16 +97,8 @@ class Graph(object):
         return self
 
     def from_data_list(self, data_list: typing.List[GraphOneData]):
-        new_data_list: typing.List[GraphOneData] = list()
-        while data_list:
-            data = data_list.pop()
-            if data.if_have_di:
-                new_data_list.append(data)
-            else:
-                new_data_list.append(GraphOneData(from_=data.from_, to_=data.to_, weight=data.weight, if_have_di=True))
-                new_data_list.append(GraphOneData(from_=data.to_, to_=data.from_, weight=data.weight, if_have_di=True))
 
-        for data in new_data_list:
+        for data in data_list:
             # 是否要新建节点
             if data.from_ not in self.node_map:
                 self.node_map[data.from_] = Node(value=data.from_)
@@ -116,7 +109,7 @@ class Graph(object):
             to_node = self.node_map[data.to_]
 
             # degree
-            edge = Edge(from_=from_node, to_=to_node, weight=data.weight)
+            edge = Edge(from_=from_node, to_=to_node, weight=data.weight, if_have_di=data.if_have_di)
             self.edges_list.append(edge)
 
             # 修改node的一些信息
@@ -124,6 +117,11 @@ class Graph(object):
             to_node.add_in_degree()
             from_node.add_next_nodes(node=to_node)
             from_node.add_next_edge(edge=edge)
+            if data.if_have_di is False:
+                to_node.add_out_degree()
+                from_node.add_in_degree()
+                to_node.add_next_nodes(node=from_node)
+                to_node.add_next_edge(edge=edge)
 
         return self
 
@@ -183,6 +181,7 @@ class Graph(object):
                     occur_set.add(n_node)
                     stack.append(node)
                     stack.append(n_node)
+                    break
 
         return travel_result
 
@@ -196,14 +195,15 @@ def test1():
     data_list = [
         GraphOneData(from_=1, to_=2, weight=1, if_have_di=False),
         GraphOneData(from_=1, to_=3, weight=2, if_have_di=True),
+        GraphOneData(from_=1, to_=6, weight=2, if_have_di=True),
         GraphOneData(from_=2, to_=3, weight=3, if_have_di=True),
         GraphOneData(from_=3, to_=4, weight=1, if_have_di=True),
         GraphOneData(from_=5, to_=4, weight=5, if_have_di=False),
     ]
     g = Graph()
     g.from_data_list(data_list=data_list)
-    g.travel(travel_type='bfs', if_print=True, node_value=2)
-    g.travel(travel_type='dfs', if_print=True, node_value=2)
+    g.travel(travel_type='bfs', if_print=True, node_value=1)
+    g.travel(travel_type='dfs', if_print=True, node_value=1)
 
 
 def test2():
@@ -217,8 +217,8 @@ def test2():
     ]
     g = Graph()
     g.from_adjacent_matrix(m=data)
-    g.travel(travel_type='bfs', if_print=True, node_value=1)
-    g.travel(travel_type='dfs', if_print=True, node_value=1)
+    g.travel(travel_type='bfs', if_print=True, node_value=0)
+    g.travel(travel_type='dfs', if_print=True, node_value=0)
 
 
 # main
