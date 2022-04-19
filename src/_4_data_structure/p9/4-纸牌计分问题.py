@@ -7,6 +7,7 @@ auther : wcy
 """
 # import modules
 import os
+import numpy as np
 
 __all__ = []
 
@@ -49,39 +50,31 @@ def func(lis, a_score, b_score):
 #     a_score = func2(lis, left=left+1, right=right) + lis[left]
 #
 
-def funca(lis, left, right):
+def funca(lis, left, right, cache_map):
+    cache_key = f'a_{left}_{right}'
+    if cache_key in cache_map:
+        return cache_map[cache_key]
+
     if left == right:
-        return lis[left]
-
-    a_score1 = funca(lis, left+1, right) + lis[left]
-    b_score1 = funcb(lis, left+1, right)
-
-    a_score2 = funca(lis, left, right-1) + lis[right]
-    b_score2 = funcb(lis, left, right-1)
-
-    if a_score1 - b_score1 > a_score2 - b_score2:
-        print("left")
-        return a_score1
+        v = lis[left]
     else:
-        print("right")
-        return a_score2
+        difa = lis[left] - funcb(lis, left=left+1, right=right, cache_map=cache_map)
+        difb = lis[right] - funcb(lis, left=left, right=right-1, cache_map=cache_map)
+        v = max(difa, difb)
+    cache_map[cache_key] = v
+    return v
 
 
-def funcb(lis, left, right):
+def funcb(lis, left, right, cache_map):
+    cache_key = f'b_{left}_{right}'
     if left == right:
-        return lis[left]
-
-    b_score1 = funcb(lis, left+1, right) + lis[left]
-    a_score1 = funca(lis, left+1, right)
-
-    b_score2 = funcb(lis, left, right-1) + lis[right]
-    a_score2 = funca(lis, left, right-1)
-    if b_score1 - a_score1 > b_score2 - a_score2:
-        print("left")
-        return b_score1
+        v = lis[left]
     else:
-        print("right")
-        return b_score2
+        difa = lis[left] - funca(lis=lis, left=left+1, right=right, cache_map=cache_map)
+        difb = lis[right] - funcb(lis=lis, left=left, right=right-1, cache_map=cache_map)
+        v = max(difa, difb)
+    cache_map[cache_key] = v
+    return v
 
 
 # main
@@ -89,5 +82,6 @@ if __name__ == '__main__':
     # lis = [1, 2, 100, 4]
     # func(lis, a_score=0, b_score=0)
     lis = [1, 2, 100, 4]
-    print(funca(lis, 0, len(lis)-1))
+    cache_map = {}
+    print(funca(lis, 0, len(lis)-1, cache_map))
 
