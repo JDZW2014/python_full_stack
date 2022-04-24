@@ -133,11 +133,54 @@ class BinaryTree(object):
         pass
 
     def to_str(self, ):
-        pass
+        s = ""
+        stack = [self.head]
+        while stack:
+            node = stack.pop(0)
+            if node is not None:
+                s += f"{node.value}_"
+            else:
+                s += f"{self.to_str_sep}_"
+                continue
+            if node.left_node is not None:
+                stack.append(node.left_node)
+            else:
+                stack.append(None)
+            if node.right_node is not None:
+                stack.append(node.right_node)
+            else:
+                stack.append(None)
+        return s
 
-    def from_str(self, ):
-        pass
+    def from_str(self, s: str):
+        stack = []
+        def _func(w):
+            if w == self.to_str_sep:
+                return w
+            else:
+                return int(w)
+        s: list = [_func(w) for w in s.split("_") if w]
+        self.head = Node(value=s.pop(0))
 
+        head = self.head
+        # 处理特殊情况
+        if s[0] == self.to_str_sep:
+            return head
+
+        while s:
+            w = s.pop(0)
+            node = Node(value=w)
+            if head.left_node is None:
+                head.set_left_node(node)
+            else:
+                head.set_right_node(node)
+
+            if s[0] == self.to_str_sep and s[1] == self.to_str_sep:
+                head = stack.pop()
+            else:
+                stack.append(node)
+
+        return head
 
 # define function
 def func1(head: Node):
@@ -256,7 +299,6 @@ def func5(head: Node):
     """
     折纸问题
     """
-
     pass
 
 
@@ -288,6 +330,14 @@ def main1():
     bt.travel(order_type='last', travel_style="rec", if_print=True)
     bt.travel(order_type='last', travel_style="unrec", if_print=True)
     bt.width_first_travel(if_print=True)
+
+    print("--- to str ---")
+    bt_s = bt.to_str()
+    print(bt_s)
+    bt2 = BinaryTree(head=None)
+    bt2.from_str(bt_s)
+    print(bt2.to_str())
+    print("--- to str ---")
 
 
 def main2():
