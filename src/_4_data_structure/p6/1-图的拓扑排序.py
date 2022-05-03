@@ -16,6 +16,11 @@ __all__ = []
 
 # define function
 def func(g: Graph):
+    """
+    图的拓扑排序：
+        1. 找入度为零的点 A （第一个）
+        2. 把A及其影响擦掉，继续找入度为零的点，。。。
+    """
     data_sort: typing.List[Node] = []
     while len(g.node_map) > 0:
 

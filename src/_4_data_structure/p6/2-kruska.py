@@ -134,6 +134,10 @@ class MinHeap(MaxHeap):
 
 # define function
 def kruska(g: Graph):
+    """
+    最小生成树算法： kruska, K算法
+        每次选最小的边，看是否会形成环
+    """
     # 这个其实是要求了距离补充存在重复的，在这偷懒了
     # 适用小顶堆每次弹出一个最短的距离
 

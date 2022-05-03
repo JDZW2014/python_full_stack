@@ -140,6 +140,9 @@ class MinHeap(MaxHeap):
 
 # define function
 def prim(g: Graph, start_node_value):
+    """
+    最小生成树算法： prim， P算法
+    """
 
     node = g.get_one_node(start_node_value)
     min_head = MinHeap()
