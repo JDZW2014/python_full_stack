@@ -105,8 +105,6 @@ def manacher(s):
     return max(result_list) // 2
 
 
-
-
 # define main
 def main1():
     s1 = "abcxyabcxzz"
