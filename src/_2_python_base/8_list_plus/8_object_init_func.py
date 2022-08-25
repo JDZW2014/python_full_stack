@@ -21,7 +21,6 @@ class object:
 
     def __delattr__(self, *args, **kwargs):  # real signature unknown
         """ Implement delattr(self, name). """
-        delattr()
         """
         Deletes the named attribute from the given object.
         delattr(x, 'y') is equivalent to ``del x.y''
