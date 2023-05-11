@@ -28,7 +28,7 @@ def func(node1: SNode, node2: SNode) -> typing.Union[SNode, typing.NoReturn]:
     if if_have_loop1 == if_have_loop2:
         # 都有loop
         if if_have_loop1 and if_have_loop2:
-            # 对入环节点做一些判断
+            # 对入环节点做一些判断，如果入环节点相同，那么一定是在一个环当中
             if id(first_enter_loop_node1) == id(first_enter_loop_node2):
                 first_enter_loop_node1.set_next_node(None)
                 return find_two_no_loop_node_list_first_intersect_node(node1=node1, node2=node2)

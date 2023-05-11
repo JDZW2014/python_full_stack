@@ -19,6 +19,7 @@ class DataNode(object):
         self.idx = idx
         self.data = data
 
+
 class MaxDQueue(object):
     def __init__(self, data_list: typing.List[int]):
         self.data_list = data_list

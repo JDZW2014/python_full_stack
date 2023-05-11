@@ -8,7 +8,6 @@ auther : wcy
     data_list = [2, 3, 5, 7, 3]
     aim = 10
     问，组成aim 最少需要多少硬币
-
 """
 # import modules
 import os

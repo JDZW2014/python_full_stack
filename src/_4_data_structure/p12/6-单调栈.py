@@ -21,6 +21,7 @@ def func(data_list: typing.List[int]):
     stack = list()
     result_list = []
     while data_list:
+        print(stack)
         data = data_list.pop(0)
         if len(stack) == 0:
             stack.append(data)

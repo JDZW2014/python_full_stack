@@ -7,7 +7,7 @@ auther : wcy
 
 【题目】：
     int N = [0, 1, 2, ... N]
-    int S 其实位置
+    int S 起始位置
     int E 终止位置
     int K 机器人必须走k步
 

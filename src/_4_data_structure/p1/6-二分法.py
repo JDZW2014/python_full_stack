@@ -5,6 +5,7 @@
 """
 from typing import List, Dict, Tuple
 
+
 def func1(iis: List, num: int, start: int, end: int):
     # 终止条件
     if len(lis) == 0:

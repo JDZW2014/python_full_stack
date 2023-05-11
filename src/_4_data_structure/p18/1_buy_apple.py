@@ -23,9 +23,7 @@ def func_buy_apple(num):
     k1 = num // 8
     k2 = num - 8 * k1
     for i in range(0, 4):
-
-
-    pass
+        pass
 
 
 # main
